@@ -243,6 +243,76 @@
       font-weight: 600;
     }
 
+
+    /* EVANTUROK AUDIO REVIEW PLAYER */
+    .evan-audio-player {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .evan-audio-player h4 {
+      margin: 0 0 10px;
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .evan-player-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .evan-play-button {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      padding: 0;
+      border: 1px solid #999;
+      border-radius: 50%;
+      background: #222;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .evan-play-button:hover {
+      background: #555;
+    }
+
+    .evan-progress-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .evan-progress {
+      display: block;
+      width: 100%;
+      margin: 0;
+      accent-color: #333;
+      cursor: pointer;
+    }
+
+    .evan-time {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3px;
+      color: #777;
+      font-size: .72rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .evan-audio {
+      display: none;
+    }
+
+    @media (max-width: 650px) {
+      .evan-player-controls { gap: 10px; }
+      .evan-play-button { width: 36px; height: 36px; min-width: 36px; }
+    }
+
     .empty {
       display: none;
       padding: 35px;
@@ -480,7 +550,7 @@
     { title: "The Social Network", year: 2010, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0H2c4-0-BwHCpgsOevljS3Di3gp9dPDIQitnQgHEHNQ&s=10", added: 44 },
     { title: "Digger", year: 2026, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQ7jWnw1UJb1rRAcvNUUxlXFAfwh50sPud810Jm5MQQ&s=10", added: 45 },
     { title: "idiocracy", year: 2006, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlAvO4MbXIr_1DgYY8RKuIJq7hY5NKaufq-NX4-JV4-A&s=10", added: 45 },
-    { title: "The Iron Claw", year: 2023, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTYZWI9tEXr9r_mTAgzeB2wS1OkMX2Lhf_1lHBGLFHPg&s=10", added: 45 },
+    { title: "The Iron Claw", year: 2023, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTYZWI9tEXr9r_mTAgzeB2wS1OkMX2Lhf_1lHBGLFHPg&s=10", audio: "audio/iron-claw-review.mp3", added: 45 },
     { title: "The Wrestler", year: 2008, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbmS9Kd0zrIyypQnCr5_BjatsjlmLXR-LnL31t7K-S7w&s=10", added: 45 },
     { title: "Nacho Libre", year: 2006, score: 6, poster: "https://m.media-amazon.com/images/M/MV5BMjMyNmEzNWYtMDNkYS00NGFmLWE3YjYtNDViYjUyMDA3MTlkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", added: 45 },
     { title: "The Social Reckoning", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5DikB1HQ8IO1wtiKidF69xwOvxR6p51XgLnwzmhHtJQ&s=10", added: 45 },
@@ -515,9 +585,100 @@
           <h3 class="film-title">${film.title}</h3>
           <div class="film-year">${film.year}</div>
           <div class="score">${film.score}<small>/ 10</small></div>
+          ${film.audio ? `
+            <div class="evan-audio-player">
+              <h4>Listen to the Review</h4>
+              <audio class="evan-audio" preload="metadata">
+                <source src="${film.audio}" type="audio/mpeg">
+                Your browser does not support audio playback.
+              </audio>
+              <div class="evan-player-controls">
+                <button class="evan-play-button" type="button"
+                        aria-label="Play audio" title="Play">
+                  ▶
+                </button>
+                <div class="evan-progress-area">
+                  <input class="evan-progress" type="range"
+                         min="0" max="100" value="0" step="0.1"
+                         aria-label="Audio progress">
+                  <div class="evan-time">
+                    <span class="evan-current">0:00</span>
+                    <span class="evan-duration">0:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ` : ""}
         </div>
       </article>
     `).join("");
+
+    // Set up the audio player(s) in the cards currently displayed.
+    grid.querySelectorAll(".evan-audio-player").forEach(function(player) {
+      const audio = player.querySelector(".evan-audio");
+      const playButton = player.querySelector(".evan-play-button");
+      const progress = player.querySelector(".evan-progress");
+      const currentTime = player.querySelector(".evan-current");
+      const durationTime = player.querySelector(".evan-duration");
+
+      function formatAudioTime(seconds) {
+        if (!Number.isFinite(seconds)) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const secondsRemainder = Math.floor(seconds % 60);
+        return minutes + ":" + String(secondsRemainder).padStart(2, "0");
+      }
+
+      function updateDuration() {
+        durationTime.textContent = formatAudioTime(audio.duration);
+      }
+
+      audio.addEventListener("loadedmetadata", updateDuration);
+      audio.addEventListener("durationchange", updateDuration);
+
+      audio.addEventListener("timeupdate", function() {
+        currentTime.textContent = formatAudioTime(audio.currentTime);
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          progress.value = (audio.currentTime / audio.duration) * 100;
+        }
+      });
+
+      playButton.addEventListener("click", function() {
+        if (audio.paused) {
+          // Keep playback to one review at a time.
+          grid.querySelectorAll(".evan-audio").forEach(function(otherAudio) {
+            if (otherAudio !== audio) otherAudio.pause();
+          });
+          audio.play().catch(function(error) {
+            console.error("Unable to play this audio file:", error);
+          });
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener("play", function() {
+        playButton.textContent = "Ⅱ";
+        playButton.setAttribute("aria-label", "Pause audio");
+        playButton.title = "Pause";
+      });
+
+      audio.addEventListener("pause", function() {
+        playButton.textContent = "▶";
+        playButton.setAttribute("aria-label", "Play audio");
+        playButton.title = "Play";
+      });
+
+      audio.addEventListener("ended", function() {
+        progress.value = 0;
+        currentTime.textContent = "0:00";
+      });
+
+      progress.addEventListener("input", function() {
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+        }
+      });
+    });
 
     empty.style.display = results.length ? "none" : "block";
   }
