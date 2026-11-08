@@ -583,7 +583,7 @@
       <article class="film-card">
         <div class="poster">
           ${film.poster
-            ? `<img src="film.poster"alt="{film.title} poster" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='FILM POSTER<br>PLACEHOLDER';">`
+            ? `<img src="${film.poster}" alt="${film.title} poster" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='FILM POSTER<br>PLACEHOLDER';">`
             : `FILM POSTER<br>PLACEHOLDER`}
         </div>
         <div class="film-info">
@@ -701,5 +701,3 @@
 
 </body>
 </html>
-
-
