@@ -345,7 +345,6 @@
     }
 
 
-    }
     .contact-section {
       border-top: 1px solid #ddd;
       background: #f7f7f7;
@@ -389,7 +388,6 @@
       nav { gap: 13px; font-size: .9rem; }
       .hero { padding-top: 45px; }
       .film-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    }
     }
   </style>
 </head>
@@ -556,33 +554,31 @@
 
    ];
 
-   // ADD YOUR REVIEW URLS HERE.
-   // Paste each written-review URL between the quotation marks. Leave it empty
-   // until that review is published; the "Read review" link appears once a URL is added.
+   // Each Read review button opens its own page in the reviews/ folder.
    const reviewLinks = {
-     'The Odyssey': "", // ADD REVIEW URL HERE
-     'EraserHead': "", // ADD REVIEW URL HERE
-     'The Color of Money': "", // ADD REVIEW URL HERE
-     'All the Presidents Men': "", // ADD REVIEW URL HERE
-     'Paris, Texas': "", // ADD REVIEW URL HERE
-     'Jurassic World: Rebirth': "", // ADD REVIEW URL HERE
-     'Rope': "", // ADD REVIEW URL HERE
-     'The Rip': "", // ADD REVIEW URL HERE
-     'True Romance': "", // ADD REVIEW URL HERE
-     'Toy Story 5': "", // ADD REVIEW URL HERE
-     'The Mandalorian & Grogu': "", // ADD REVIEW URL HERE
-     'Wake Up Dead Man: A Knives Out Mystery': "", // ADD REVIEW URL HERE
-     'Whiplash': "", // ADD REVIEW URL HERE
-     'The Apartment': "", // ADD REVIEW URL HERE
-     'The Player': "", // ADD REVIEW URL HERE
-     'Bugonia': "", // ADD REVIEW URL HERE
-     'Its A Wonderful life': "", // ADD REVIEW URL HERE
-     "Singin' in the Rain": "", // ADD REVIEW URL HERE
-     'Is This Thing On?': "", // ADD REVIEW URL HERE
-     'The Drama': "", // ADD REVIEW URL HERE
-     'Cool Hand Luke': "", // ADD REVIEW URL HERE
-     'The Social Reckoning': "", // ADD REVIEW URL HERE
-     'Coyote VS ACME': "", // ADD REVIEW URL HERE
+     "The Odyssey": "reviews/the-odyssey.html",
+     "EraserHead": "reviews/eraserhead.html",
+     "The Color of Money": "reviews/the-color-of-money.html",
+     "All the Presidents Men": "reviews/all-the-presidents-men.html",
+     "Paris, Texas": "reviews/paris-texas.html",
+     "Jurassic World: Rebirth": "reviews/jurassic-world-rebirth.html",
+     "Rope": "reviews/rope.html",
+     "The Rip": "reviews/the-rip.html",
+     "True Romance": "reviews/true-romance.html",
+     "Toy Story 5": "reviews/toy-story-5.html",
+     "The Mandalorian & Grogu": "reviews/the-mandalorian-grogu.html",
+     "Wake Up Dead Man: A Knives Out Mystery": "reviews/wake-up-dead-man-a-knives-out-mystery.html",
+     "Whiplash": "reviews/whiplash.html",
+     "The Apartment": "reviews/the-apartment.html",
+     "The Player": "reviews/the-player.html",
+     "Bugonia": "reviews/bugonia.html",
+     "Its A Wonderful life": "reviews/its-a-wonderful-life.html",
+     "Singin' in the Rain": "reviews/singin-in-the-rain.html",
+     "Is This Thing On?": "reviews/is-this-thing-on.html",
+     "The Drama": "reviews/the-drama.html",
+     "Cool Hand Luke": "reviews/cool-hand-luke.html",
+     "The Social Reckoning": "reviews/the-social-reckoning.html",
+     "Coyote VS ACME": "reviews/coyote-vs-acme.html",
    };
 
    // Every film without a written-review link gets the same audio-player interface
@@ -623,7 +619,7 @@
           <div class="film-year">${film.year}</div>
           <div class="score">${film.score}<small>/ 10</small></div>
           ${Object.prototype.hasOwnProperty.call(reviewLinks, film.title) ? `
-            <a class="review-link" href="${reviewLinks[film.title] || '#ADD-REVIEW-URL-HERE'}" target="_blank" rel="noopener">Read review</a>
+            <a class="review-link" href="${reviewLinks[film.title]}">Read review</a>
           ` : ""}
           ${film.audio ? `
             <div class="evan-audio-player">
