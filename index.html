@@ -346,38 +346,61 @@
 
 
     }
-    .contact-section {
-      border-top: 1px solid #ddd;
-      background: #f7f7f7;
-      text-align: center;
-    }
 
-    .contact-content {
-      max-width: 760px;
-      margin: auto;
-    }
-
-    .contact-email {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 13px 22px;
-      border-radius: 999px;
-      background: #222;
-      color: #fff;
+    .price {
+      font-size: 2.4rem;
       font-weight: 800;
+      margin: 10px 0;
     }
 
-    .contact-email:hover { background: #555; }
-
-    .review-link {
-      display: inline-block;
-      margin-top: 12px;
-      color: #0066cc;
-      text-decoration: underline;
-      font-weight: 700;
+    .price span {
+      font-size: 1rem;
+      color: #777;
+      font-weight: 500;
     }
 
-    .review-link:hover { color: #004999; }
+    . form {
+      display: flex;
+      gap: 10px;
+      max-width: 520px;
+      margin: 25px auto 0;
+    }
+
+    .newsletter input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid #bbb;
+      border-radius: 999px;
+      padding: 13px 17px;
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 21px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      background: #222;
+      color: white;
+    }
+
+    button:hover { background: #555; }
+
+    #message {
+      margin-top: 15px;
+      color: #666;
+      font-size: .92rem;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 28px 24px;
+      text-align: center;
+      color: #888;
+      font-size: .9rem;
+    }
 
     @media (max-width: 900px) {
       .film-grid { grid-template-columns: repeat(3, 1fr); }
@@ -389,7 +412,8 @@
       nav { gap: 13px; font-size: .9rem; }
       .hero { padding-top: 45px; }
       .film-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    }
+      .newsletter { margin-left: 16px; margin-right: 16px; padding: 30px 20px; }
+      .newsletter form { flex-direction: column; }
     }
   </style>
 </head>
@@ -401,7 +425,7 @@
     <nav aria-label="Main navigation">
       <a href="#home">Films</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact me</a>
+      <a href="#newsletter">Newsletter</a>
     </nav>
   </div>
 </header>
@@ -468,21 +492,8 @@
 
 </section>
 
-
-<section id="contact" class="contact-section">
-  <div class="section contact-content">
-    <div class="eyebrow">Get in touch</div>
-    <h2>Contact me</h2>
-    <p>Have a film suggestion, a question, or want to get in touch? Send me an email.</p>
-    <a class="contact-email"
-       href="mailto:evanturok5@gmail.com?subject=Message%20from%20Evan%20Turok.com">
-      Email Evan — evanturok5@gmail.com
-    </a>
-  </div>
-</section>
-
 <footer>
-  © 2026 Evan Turok.com · Film recommendations and reviews from the radio show.
+  © 2026 Evan Turok.com · Film recommendations from the radio show and newspapper reviews.
 </footer>
 
 <script>
@@ -503,7 +514,7 @@
     { title: "Michael", year: 2026, score: 6, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToQknWoHUA6w_081Uxdwo5wPfO6XvEPf-nSdqxKD8W2w&s=10", added: 11 },
     { title: "The Sheep Detectives", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9PXWNSm4VYlGtf8fjt00Rs9JdyoM_0n_6S7hv2pXqw&s=10", added: 12 },
     { title: "The Devil Wears Prada 2", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeUneXB9oO7V1etq7--LOBcrUA-A6QDxOeIpSJu4oyrA&s=10", added: 13 },
-    { title: "The Mandalorian & Grogu", year: 2026, score: 4, poster: "https://m.media-amazon.com/images/I/714Jgnz1WxL._AC_UF894,1000_QL80_.jpg", added: 14 },
+    { title: "The Mandolorian & Grogu", year: 2026, score: 4, poster: "https://m.media-amazon.com/images/I/714Jgnz1WxL._AC_UF894,1000_QL80_.jpg", added: 14 },
     { title: "Masters of the Universe", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQHf-7VuByS16Kf7URrXnkd44Yu_oFYNlHPhETxDDKfg&s=10", added: 15 },
     { title: "Disclosure Day", year: 2026, score: 2, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZTduXAldXzIRjy_Cmg_I0lxksKIY5vKLc3A8cc-bbvA&s=10", added: 16 },
     { title: "Toy Story 5", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRW_jVquPNlxDW9jpsB8XD-Rx8Nj1N3ZiaI_Jg64Z06Q&s=10", added: 17 },
@@ -553,50 +564,7 @@
     { title: "Coyote VS ACME", year: 2026, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz5R4OLA5QejaPegks6LZGFJPzTzHKo8Yo9rTJNKixyQ&s=10", added: 47 },
     { title: "Zack Snyder's Justice League", year: 2021, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqGfRBBYttr8TTMSOgnbtflgYC8RT5TAR1Y_SwuUxbA&s=10", added: 48 },
     { title: "The Philadelphia Story", year: 1940, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCuRzCd-KU2fq_sZCelxPoaeyU9bY6Ki9o--dYVri_3Q&s=10", added: 49 }
-
    ];
-
-   // ADD YOUR REVIEW URLS HERE.
-   // Paste each written-review URL between the quotation marks. Leave it empty
-   // until that review is published; the "Read review" link appears once a URL is added.
-   const reviewLinks = {
-     'The Odyssey': "", // ADD REVIEW URL HERE
-     'EraserHead': "", // ADD REVIEW URL HERE
-     'The Color of Money': "", // ADD REVIEW URL HERE
-     'All the Presidents Men': "", // ADD REVIEW URL HERE
-     'Paris, Texas': "", // ADD REVIEW URL HERE
-     'Jurassic World: Rebirth': "", // ADD REVIEW URL HERE
-     'Rope': "", // ADD REVIEW URL HERE
-     'The Rip': "", // ADD REVIEW URL HERE
-     'True Romance': "", // ADD REVIEW URL HERE
-     'Toy Story 5': "", // ADD REVIEW URL HERE
-     'The Mandalorian & Grogu': "", // ADD REVIEW URL HERE
-     'Wake Up Dead Man: A Knives Out Mystery': "", // ADD REVIEW URL HERE
-     'Whiplash': "", // ADD REVIEW URL HERE
-     'The Apartment': "", // ADD REVIEW URL HERE
-     'The Player': "", // ADD REVIEW URL HERE
-     'Bugonia': "", // ADD REVIEW URL HERE
-     'Its A Wonderful life': "", // ADD REVIEW URL HERE
-     "Singin' in the Rain": "", // ADD REVIEW URL HERE
-     'Is This Thing On?': "", // ADD REVIEW URL HERE
-     'The Drama': "", // ADD REVIEW URL HERE
-     'Cool Hand Luke': "", // ADD REVIEW URL HERE
-     'The Social Reckoning': "", // ADD REVIEW URL HERE
-     'Coyote VS ACME': "", // ADD REVIEW URL HERE
-   };
-
-   // Every film without a written-review link gets the same audio-player interface
-   // used for The Iron Claw. Replace each generated placeholder path below with
-   // the matching MP3 filename in your site's /audio/ folder.
-   const filmsWithAudioPlaceholders = new Set(Object.keys(reviewLinks));
-   films.forEach(function(film) {
-     if (film.title !== "The Iron Claw" && !filmsWithAudioPlaceholders.has(film.title)) {
-       const audioSlug = film.title.toLowerCase()
-         .replace(/[^a-z0-9]+/g, "-")
-         .replace(/^-|-$/g, "");
-       film.audio = film.audio || `audio/REPLACE-WITH-${audioSlug}-review.mp3`;
-     }
-   });
 
   const grid = document.getElementById("filmGrid");
   const empty = document.getElementById("empty");
@@ -622,9 +590,6 @@
           <h3 class="film-title">${film.title}</h3>
           <div class="film-year">${film.year}</div>
           <div class="score">${film.score}<small>/ 10</small></div>
-          ${Object.prototype.hasOwnProperty.call(reviewLinks, film.title) ? `
-            <a class="review-link" href="${reviewLinks[film.title] || '#ADD-REVIEW-URL-HERE'}" target="_blank" rel="noopener">Read the review</a>
-          ` : ""}
           ${film.audio ? `
             <div class="evan-audio-player">
               <h4>Listen to the Review</h4>
@@ -726,6 +691,12 @@
   search.addEventListener("input", renderFilms);
   sort.addEventListener("change", renderFilms);
   renderFilms();
+
+  document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("message").textContent =
+      "Thanks! This is currently a demo form. Connect it to Stripe + an email/newsletter service to activate the $2/month subscription.";
+  });
 </script>
 
 </body>
