@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5MNBNJ49D4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5MNBNJ49D4');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok.com — films discussed on the radio, rated out of 10.">
+  <title>Evan Turok.com | Film Ratings</title>
+  <style>
+    :root {
+      --silver: #c9c9c9;
+      --silver-dark: #8d8d8d;
+      --silver-light: #f4f4f4;
+      --text: #252525;
+      --muted: #707070;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .about a {
+      color: #0066cc;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .about a:hover {
+      color: #004999;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .brand span {
+      color: #999;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-weight: 600;
+    }
+
+    nav a:hover { color: #777; }
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      padding: 70px 24px 35px;
+      display: grid;
+      grid-template-columns: 1.6fr .8fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: #888;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 8px 0 16px;
+      font-size: clamp(2.7rem, 6vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-photo {
+      min-height: 300px;
+      border-radius: 24px;
+      border: 1px solid #c8c8c8;
+      background: linear-gradient(145deg, #fff, #d6d6d6, #fff);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: #777;
+      font-weight: 700;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 45px 24px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+      letter-spacing: -.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .controls input,
+    .controls select {
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    .controls input:focus,
+    .controls select:focus {
+      border-color: #888;
+      box-shadow: 0 0 0 3px #eee;
+    }
+
+    .film-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .film-card {
+      overflow: hidden;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 7px 22px rgba(0,0,0,.045);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .film-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .poster {
+      aspect-ratio: 2 / 3;
+      background: linear-gradient(145deg, #f8f8f8, #d2d2d2);
+      display: grid;
+      place-items: center;
+      color: #777;
+      font-size: .9rem;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .film-info { padding: 17px; }
+
+    .film-title {
+      margin: 0 0 5px;
+      font-size: 1.08rem;
+    }
+
+    .film-year {
+      color: #888;
+      font-size: .9rem;
+    }
+
+    .score {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f2f2f2, #fff);
+      border: 1px solid #c7c7c7;
+      font-weight: 800;
+    }
+
+    .score small {
+      color: #888;
+      font-weight: 600;
+    }
+
+
+    /* EVANTUROK AUDIO REVIEW PLAYER */
+    .evan-audio-player {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .evan-audio-player h4 {
+      margin: 0 0 10px;
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .evan-player-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .evan-play-button {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      padding: 0;
+      border: 1px solid #999;
+      border-radius: 50%;
+      background: #222;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .evan-play-button:hover {
+      background: #555;
+    }
+
+    .evan-progress-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .evan-progress {
+      display: block;
+      width: 100%;
+      margin: 0;
+      accent-color: #333;
+      cursor: pointer;
+    }
+
+    .evan-time {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3px;
+      color: #777;
+      font-size: .72rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .evan-audio {
+      display: none;
+    }
+
+    @media (max-width: 650px) {
+      .evan-player-controls { gap: 10px; }
+      .evan-play-button { width: 36px; height: 36px; min-width: 36px; }
+    }
+
+    .empty {
+      display: none;
+      padding: 35px;
+      border: 1px dashed #bbb;
+      border-radius: var(--radius);
+      text-align: center;
+      color: #777;
+    }
+
+    .about {
+      border-top: 1px solid #ddd;
+      background: #f7f7f7;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .about-photo {
+      min-height: 360px;
+      border-radius: 24px;
+      border: 1px solid #c7c7c7;
+      background: linear-gradient(145deg, #fff, #d8d8d8);
+      display: grid;
+      place-items: center;
+      color: #777;
+    }
+
+
+    .contact-section {
+      border-top: 1px solid #ddd;
+      background: #f7f7f7;
+      text-align: center;
+    }
+
+    .contact-content {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: #222;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .contact-email:hover { background: #555; }
+
+    .review-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #0066cc;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .review-link:hover { color: #004999; }
+
+    @media (max-width: 900px) {
+      .film-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero, .about-content { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 650px) {
+      .nav { padding: 14px 16px; }
+      nav { gap: 13px; font-size: .9rem; }
+      .hero { padding-top: 45px; }
+      .film-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#home">Evan Turok<span>.com</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Films</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Your comprehensive film guide</div>
+      <h1>Evan Turok.com</h1>
+      <p>
+        Welcome to the home of every film discussed on the show — with my
+       score out of 10. Browse the collection, discover something new and find
+        your next watch.
+      </p>
+    </div>
+    <div class="hero-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRk_tVlAq36YXmcYy-nC9ya_mizdmd-sm3I8WyUozFPTEa2YPSpRaC6pw&s=10" alt="Evan Turok picture" width="550" height="400"> </section>
+
+
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Every film. My score.</h2>
+        <p>A growing catalogue of films discussed on the show. Updated weekly.</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search films..." aria-label="Search films">
+      <select id="sort" aria-label="Sort films">
+        <option value="newest">Newest first</option>
+        <option value="score-high">Highest score</option>
+        <option value="score-low">Lowest score</option>
+        <option value="title">A–Z</option>
+      </select>
+    </div>
+
+    <div id="filmGrid" class="film-grid"></div>
+    <div id="empty" class="empty">No films match your search.</div>
+  </section>
+</main>
+
+<section id="about" class="about">
+  <div class="section about-content">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ5iP4uHFlBIrPfvM1uY7emSwICD8FFOl2q5gFuZYJxA&s=10" alt="about image">
+    <div>
+      <div class="eyebrow">About the host</div>
+      <h2>Meet the person behind 'The Silver Screen Spin' and 'Turok's Takes'</h2>
+      <p>
+        Evan Turok is a film reviewer, writer and radio host from Romsey Victoria.
+        Between his radio show 'The Silver Screen Spin', playing every Monday from
+        6–7 pm, and his monthly written reviews in the 'Star Weekly', released
+        state wide the second Tuesday of every month, titled under 'Turoks Takes', he has become a consistent
+        and trusted voice in the film world.
+      </p>
+      <p>
+        Listen to The Silver Screen Spin on <a href="https://www.sunburyradio.com.au/" target="_blank" rel="noopener">99.3FM</a>
+        and read Evan's monthly reviews in
+        <a href="https://starweekly.com.au/" target="_blank" rel="noopener">Star Weekly</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+</section>
+
+
+<section id="contact" class="contact-section">
+  <div class="section contact-content">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Contact me</h2>
+    <p>Have a film suggestion, a question, or want to get in touch? Send me an email.</p>
+    <a class="contact-email"
+       href="mailto:evanturok5@gmail.com?subject=Message%20from%20Evan%20Turok.com">
+      Email Evan — evanturok5@gmail.com
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Evan Turok.com · Film recommendations and reviews from the radio show.
+</footer>
+
+<script>
+  // Replace these placeholder films with your real catalogue.
+  const films = [
+    { title: "The Odyssey", year: 2026, score: 9, poster: "https://media.themoviedb.org/t/p/w220_and_h330_face/yy3OlixudhSYJVHypFWCUnPMhd6.jpg", added: 1 },
+    { title: "EraserHead", year: 1977, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0khlLy3Iq28WBr5KWaEQil4QWXbPhSHR3Ci57d_LF6A&s=10", added: 2 },
+    { title: "The Color of Money", year: 1986, score: 7, poster: "https://m.media-amazon.com/images/M/MV5BYTRiNDAxNTgtNzJkMy00Y2RmLThkMmItYzQ5YTU2ZmVhNTg4XkEyXkFqcGc@._V1_QL75_UX190_CR0,0,190,281_.jpg", added: 3 },
+    { title: "All the Presidents Men", year: 1976, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dtN6eiWTdixmqixpBAy3rKiuVkuOJfs_TM8kbyltnQ&s=10", added: 4 },
+    { title: "Paris, Texas", year: 1984, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXO3Uvh0Q15sK5MOvykPI1H0H0xRuntWkiBS4kG_4r4A&s=10", added: 5 },
+    { title: "Jurassic World: Rebirth", year: 2025, score: 3, poster: "https://www.universalpictures.com.au/tl_files/content/movies/jurassic_world_rebirth/posters/01.jpg", added: 6 },
+    { title: "Rope", year: 1948, score: 7, poster: "https://upload.wikimedia.org/wikipedia/en/8/8e/Rope2.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", added: 7 },
+    { title: "All Thar Jazz", year: 1979, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_1UkGWkVGudGlryYn7gxwOeIZJCzoc2lDVKCA89LOcQ&s=10", added: 7 },
+    { title: "Reservoir Dogs", year: 1992, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjVYg9hTRvQVK96UrbeQb062x4u_xUAc0gdi38FezjQ&s=10", added: 7 },
+    { title: "The Rip", year: 2026, score: 3, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOnxB4l4t1X0zONPG7-suXIiMh_nD1Z2wrVZzzgCSB0A&s=10", added: 8 },
+    { title: "True Romance", year: 1993, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Oxj08fG4lGh_hGfGzTUQofhJMIdFylGlnQ-4Iwcb3w&s=10", added: 9 },
+    { title: "Project Hail Mary", year: 2026, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHenQUQoSCyuXyu8wds0WW6C5HpLCp76q_tHFZgqtSMg&s=10", added: 10 },
+    { title: "Michael", year: 2026, score: 6, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToQknWoHUA6w_081Uxdwo5wPfO6XvEPf-nSdqxKD8W2w&s=10", added: 11 },
+    { title: "The Sheep Detectives", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9PXWNSm4VYlGtf8fjt00Rs9JdyoM_0n_6S7hv2pXqw&s=10", added: 12 },
+    { title: "The Devil Wears Prada 2", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeUneXB9oO7V1etq7--LOBcrUA-A6QDxOeIpSJu4oyrA&s=10", added: 13 },
+    { title: "The Mandalorian & Grogu", year: 2026, score: 4, poster: "https://m.media-amazon.com/images/I/714Jgnz1WxL._AC_UF894,1000_QL80_.jpg", added: 14 },
+    { title: "Masters of the Universe", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQHf-7VuByS16Kf7URrXnkd44Yu_oFYNlHPhETxDDKfg&s=10", added: 15 },
+    { title: "Disclosure Day", year: 2026, score: 2, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZTduXAldXzIRjy_Cmg_I0lxksKIY5vKLc3A8cc-bbvA&s=10", added: 16 },
+    { title: "Toy Story 5", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRW_jVquPNlxDW9jpsB8XD-Rx8Nj1N3ZiaI_Jg64Z06Q&s=10", added: 17 },
+    { title: "Super-Girl", year: 2026, score: 3, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmY6Ld3MblQG0hhmAG78RCbcM39-XNE7jsL38aZ5LaPw&s=10", added: 18 },
+    { title: "Minions and Monsters", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDMajmWqWp9L7uOGjGnN_AO-5zZVzerdqCKH0F3zHV63xkDhL20ze6pPaX9PNvre-4n-WBdw&s=10", added: 19 },
+    { title: "Silence", year: 2016, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0OI1EaYJAurG7OdiuIY1whEQgeTSWFdCg6jchPfwLrg&s=10", added: 20 },
+    { title: "The End of Oak Street", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu-Qm6Fpuf2u2_E7XJKaMx8TnTS4-Pz5bicZWuFwfwQQ&s=10", added: 21 },
+    { title: "Monsters, Inc.", year: 2001, score: 8, poster: "https://m.media-amazon.com/images/M/MV5BODJiZDk1MmEtMzY4MS00NjQwLTgwNzMtMDBlYTBjMWIzNDE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", added: 22 },
+    { title: "Rocky", year: 1976, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRFd3nsGAWZX5Az87STQ2TT46AAtgQaEM3uGVMW92ZQ&s=10", added: 22 },
+    { title: "Wake Up Dead Man: A Knives Out Mystery", year: 2025, score: 6, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXgxIdhWfazSByEWeNzg3ZMaMK4JzUsm_--KhUgZjk5g&s=10", added: 22 },
+    { title: "Whiplash", year: 2014, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmXDWWQ0go1mWx0IDQOoPsnnniuEggJVaGx9lPzgYohQ&s=10", added: 22 },
+    { title: "The Apartment", year: 1960, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvG_oHiDpaOEtmjChzZKHWjBKi9JlBjf1fKbS3apEL2Q&s=10", added: 22 },
+    { title: "The Player", year: 1992, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA0IhVUzR58MOKgrnSLYINT80U7TDzqmYtiBuDKUXjdg&s=10", added: 27 },
+    { title: "ClayFace", year: 2026, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPwaE8H9S_qEni97iolHIS5pLX7r6CIfXvvpetR0IpSQ&s=10", added: 22 },
+    { title: "Bugonia", year: 2025, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbEf3ez9Gv2Xipr_qf4KRu4mSUiRkh0creNPEyPhCcKg&s=10", added: 23 },
+    { title: "Civil War", year: 2024, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKtcy4S80j6Qqz0uVJLGwH-M3-chth6UtcdSRPBGmrwQ&s=10", added: 23 },
+    { title: "Wild Horse Nine", year: 2026, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhV4n4ETuqj-M0AN5j97IGirio01iapIYjAxcsowESSA&s=10", added: 23 },
+    { title: "Godzilla Minus Zero", year: 2026, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShdbmhU5bGu2rC-qLnfrnajgukkBoeSyo34o6mCixpFQ&s=10", added: 23 },
+    { title: "Its A Wonderful life", year: 1946, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWUUcyhvK758qcEs1YKRqdByOmnN4d-XOSdjUFZiK2fpwh1SerDOnNBlMtIR9__8LCxHRRpX94ejsz_VSzAEpfItqZFJSirNjs5Lq6_js&s=10", added: 24 },
+    { title: "Singin' in the Rain", year: 1952, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG6Z22iCppX60pd10bdU0vqSp-Iv3_utlhjYrPlogGGw&s=10", added: 25 },
+    { title: "Is This Thing On?", year: 2025, score: 6, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_GLlFShFMiTV1OX2nPyw-Ug3Cwrec5MQPIEWOZLmMiQ&s=10", added: 26 },
+    { title: "The Drama", year: 2026, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI9mEYuKcq3QDW1czqkOKfhT2lMZVE3I50nC7e3y5i5g&s=10", added: 27 },
+    { title: "Spider-Man: Brand New Day", year: 2026, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRBNPetHukrorY8xN9XZtnwS7oR5mv0xOYiMCTlrv5UA&s=10", added: 28 },
+    { title: "Cool Hand Luke", year: 1967, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXqaDTVE8uJIhWIcxLx5pqcHKjf0Ne0MDmfVk3qCxGHA&s=10", added: 29 },
+    { title: "Moana (Live Action)", year: 2026, score: 3, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_LkI9XccnP3hb8eUt1D0MH1WpvGE6qnuf90pJ1YbCZQ&s=10", added: 30 },
+    { title: "Once Upon a Time in Hollywood", year: 2019, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtfMFrk73LDuez0B_jmcodosefNgfRyUnQ2ApHxS_buQ&s=10", added: 31 },
+    { title: "Apocalypse Now", year: 1979, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNQw79j7Bvp5Dy9_8RkjecXNkrNNV2LK5GxIkisopV7Q&s=10", added: 32 },
+    { title: "Tony", year: 2026, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMWn2iISG245-M2O5uEqkvfg2NzFakPwqnmZuYZytOyA&s=10", added: 33 },
+    { title: "A Quiet Place", year: 2018, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsLuSR85bplBsgGZ7lgO2_iZSsepmNiI7Cm9kNFSJpKA&s=10", added: 34 },
+    { title: "Cars", year: 2006, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfswDdTEeXgcn9v6PtgN6fibfFs7DzXAcxcfNYWWVv5g&s=10", added: 35 },
+    { title: "Django Unchained", year: 2012, score: 10, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbt1TE1SqU6QNmxwnNips9gYCE_mh1P39jN9EqQunP7g&s=10", added: 36 },
+    { title: "The Dog Stars", year: 2026, score: 3, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vuSvKs1cHDr-zcUIGXzFNmZEaRZ_UjXyZSphnk60Kg&s=10", added: 37 },
+    { title: "How to Lose a Guy in 10 Days", year: 2003, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3WBIICQLbWoDEexAAMGAmeW9Aa8TSGsd7LC-BV3Yu-g&s=10", added: 38 },
+    { title: "By Any Means", year: 2026, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAFubRE9-EUC1R9Ozj_0-14oES8Njia1lpMxK4iYx7Q&s=10", added: 39 },
+    { title: "Heat", year: 1995, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Cxb1AjxZWmZtanQ4S-GxdggsKASvNFApTUe1ju9ddQ&s=10", added: 40 },
+    { title: "Heart of the Beast", year: 2026, score: 6, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYV8ZzSB_1VdnMGUkHdmtyWlBRuGJgTuRx_JlbHz9Dkw&s=10", added: 41 },
+    { title: "Avengers: Endgame", year: 2019, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnjhb07sNvtZHH4ZA2V9Co6yDTjdCuX9JDgnOeJhKCdw&s=10", added: 42 },
+    { title: "Pixels", year: 2015, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG1wkLkk-IMV20DZjaKdb35YoXXlcM0muNJBYmtf-wOA&s=10", added: 43 },
+    { title: "The Social Network", year: 2010, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0H2c4-0-BwHCpgsOevljS3Di3gp9dPDIQitnQgHEHNQ&s=10", added: 44 },
+    { title: "Digger", year: 2026, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQ7jWnw1UJb1rRAcvNUUxlXFAfwh50sPud810Jm5MQQ&s=10", added: 45 },
+    { title: "idiocracy", year: 2006, score: 5, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlAvO4MbXIr_1DgYY8RKuIJq7hY5NKaufq-NX4-JV4-A&s=10", added: 45 },
+    { title: "The Iron Claw", year: 2023, score: 9, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTYZWI9tEXr9r_mTAgzeB2wS1OkMX2Lhf_1lHBGLFHPg&s=10", audio: "audio/iron-claw-review.mp3", added: 45 },
+    { title: "The Wrestler", year: 2008, score: 8, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbmS9Kd0zrIyypQnCr5_BjatsjlmLXR-LnL31t7K-S7w&s=10", added: 45 },
+    { title: "Nacho Libre", year: 2006, score: 6, poster: "https://m.media-amazon.com/images/M/MV5BMjMyNmEzNWYtMDNkYS00NGFmLWE3YjYtNDViYjUyMDA3MTlkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", added: 45 },
+    { title: "The Social Reckoning", year: 2026, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5DikB1HQ8IO1wtiKidF69xwOvxR6p51XgLnwzmhHtJQ&s=10", added: 45 },
+    { title: "Dazed and Confused", year: 1993, score: 9, poster: "https://m.media-amazon.com/images/M/MV5BMTM5MDY5MDQyOV5BMl5BanBnXkFtZTgwMzM3NzMxMDE@._V1_FMjpg_UX1000_.jpg", added: 46 },
+    { title: "Coyote VS ACME", year: 2026, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz5R4OLA5QejaPegks6LZGFJPzTzHKo8Yo9rTJNKixyQ&s=10", added: 47 },
+    { title: "Zack Snyder's Justice League", year: 2021, score: 7, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqGfRBBYttr8TTMSOgnbtflgYC8RT5TAR1Y_SwuUxbA&s=10", added: 48 },
+    { title: "The Philadelphia Story", year: 1940, score: 4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCuRzCd-KU2fq_sZCelxPoaeyU9bY6Ki9o--dYVri_3Q&s=10", added: 49 }
+
+   ];
+
+   // Each Read review button opens its own page in the reviews/ folder.
+   const reviewLinks = {
+     "The Odyssey": "reviews/the-odyssey.html",
+     "EraserHead": "reviews/eraserhead.html",
+     "The Color of Money": "reviews/the-color-of-money.html",
+     "All the Presidents Men": "reviews/all-the-presidents-men.html",
+     "Paris, Texas": "reviews/paris-texas.html",
+     "Jurassic World: Rebirth": "reviews/jurassic-world-rebirth.html",
+     "Rope": "reviews/rope.html",
+     "The Rip": "reviews/the-rip.html",
+     "True Romance": "reviews/true-romance.html",
+     "Toy Story 5": "reviews/toy-story-5.html",
+     "The Mandalorian & Grogu": "reviews/the-mandalorian-grogu.html",
+     "Wake Up Dead Man: A Knives Out Mystery": "reviews/wake-up-dead-man-a-knives-out-mystery.html",
+     "Whiplash": "reviews/whiplash.html",
+     "The Apartment": "reviews/the-apartment.html",
+     "The Player": "reviews/the-player.html",
+     "Bugonia": "reviews/bugonia.html",
+     "Its A Wonderful life": "reviews/its-a-wonderful-life.html",
+     "Singin' in the Rain": "reviews/singin-in-the-rain.html",
+     "Is This Thing On?": "reviews/is-this-thing-on.html",
+     "The Drama": "reviews/the-drama.html",
+     "Cool Hand Luke": "reviews/cool-hand-luke.html",
+     "The Social Reckoning": "reviews/the-social-reckoning.html",
+     "Coyote VS ACME": "reviews/coyote-vs-acme.html",
+   };
+
+   // Every film without a written-review link gets the same audio-player interface
+   // used for The Iron Claw. Replace each generated placeholder path below with
+   // the matching MP3 filename in your site's /audio/ folder.
+   const filmsWithAudioPlaceholders = new Set(Object.keys(reviewLinks));
+   films.forEach(function(film) {
+     if (film.title !== "The Iron Claw" && !filmsWithAudioPlaceholders.has(film.title)) {
+       const audioSlug = film.title.toLowerCase()
+         .replace(/[^a-z0-9]+/g, "-")
+         .replace(/^-|-$/g, "");
+       film.audio = film.audio || `audio/REPLACE-WITH-${audioSlug}-review.mp3`;
+     }
+   });
+
+  const grid = document.getElementById("filmGrid");
+  const empty = document.getElementById("empty");
+  const search = document.getElementById("search");
+  const sort = document.getElementById("sort");
+
+  function renderFilms() {
+    const query = search.value.toLowerCase().trim();
+    let results = films.filter(f => f.title.toLowerCase().includes(query));
+
+    if (sort.value === "score-high") results.sort((a,b) => b.score - a.score);
+    if (sort.value === "score-low") results.sort((a,b) => a.score - b.score);
+    if (sort.value === "title") results.sort((a,b) => a.title.localeCompare(b.title));
+
+    grid.innerHTML = results.map(film => `
+      <article class="film-card">
+        <div class="poster">
+          ${film.poster
+            ? `<img src="${film.poster}" alt="${film.title} poster" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='FILM POSTER<br>PLACEHOLDER';">`
+            : `FILM POSTER<br>PLACEHOLDER`}
+        </div>
+        <div class="film-info">
+          <h3 class="film-title">${film.title}</h3>
+          <div class="film-year">${film.year}</div>
+          <div class="score">${film.score}<small>/ 10</small></div>
+          ${Object.prototype.hasOwnProperty.call(reviewLinks, film.title) ? `
+            <a class="review-link" href="${reviewLinks[film.title]}">Read review</a>
+          ` : ""}
+          ${film.audio ? `
+            <div class="evan-audio-player">
+              <h4>Listen to the Review</h4>
+              <audio class="evan-audio" preload="metadata">
+                <source src="${film.audio}" type="audio/mpeg">
+                Your browser does not support audio playback.
+              </audio>
+              <div class="evan-player-controls">
+                <button class="evan-play-button" type="button"
+                        aria-label="Play audio" title="Play">
+                  ▶
+                </button>
+                <div class="evan-progress-area">
+                  <input class="evan-progress" type="range"
+                         min="0" max="100" value="0" step="0.1"
+                         aria-label="Audio progress">
+                  <div class="evan-time">
+                    <span class="evan-current">0:00</span>
+                    <span class="evan-duration">0:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ` : ""}
+        </div>
+      </article>
+    `).join("");
+
+    // Set up the audio player(s) in the cards currently displayed.
+    grid.querySelectorAll(".evan-audio-player").forEach(function(player) {
+      const audio = player.querySelector(".evan-audio");
+      const playButton = player.querySelector(".evan-play-button");
+      const progress = player.querySelector(".evan-progress");
+      const currentTime = player.querySelector(".evan-current");
+      const durationTime = player.querySelector(".evan-duration");
+
+      function formatAudioTime(seconds) {
+        if (!Number.isFinite(seconds)) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const secondsRemainder = Math.floor(seconds % 60);
+        return minutes + ":" + String(secondsRemainder).padStart(2, "0");
+      }
+
+      function updateDuration() {
+        durationTime.textContent = formatAudioTime(audio.duration);
+      }
+
+      audio.addEventListener("loadedmetadata", updateDuration);
+      audio.addEventListener("durationchange", updateDuration);
+
+      audio.addEventListener("timeupdate", function() {
+        currentTime.textContent = formatAudioTime(audio.currentTime);
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          progress.value = (audio.currentTime / audio.duration) * 100;
+        }
+      });
+
+      playButton.addEventListener("click", function() {
+        if (audio.paused) {
+          // Keep playback to one review at a time.
+          grid.querySelectorAll(".evan-audio").forEach(function(otherAudio) {
+            if (otherAudio !== audio) otherAudio.pause();
+          });
+          audio.play().catch(function(error) {
+            console.error("Unable to play this audio file:", error);
+          });
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener("play", function() {
+        playButton.textContent = "Ⅱ";
+        playButton.setAttribute("aria-label", "Pause audio");
+        playButton.title = "Pause";
+      });
+
+      audio.addEventListener("pause", function() {
+        playButton.textContent = "▶";
+        playButton.setAttribute("aria-label", "Play audio");
+        playButton.title = "Play";
+      });
+
+      audio.addEventListener("ended", function() {
+        progress.value = 0;
+        currentTime.textContent = "0:00";
+      });
+
+      progress.addEventListener("input", function() {
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+        }
+      });
+    });
+
+    empty.style.display = results.length ? "none" : "block";
+  }
+
+  search.addEventListener("input", renderFilms);
+  sort.addEventListener("change", renderFilms);
+  renderFilms();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Rope.">
+  <title>Rope Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Rope</h1>
+    <p class="film-year">1948</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://upload.wikimedia.org/wikipedia/en/8/8e/Rope2.jpg?utm_source=en.wikipedia.org&amp;utm_campaign=index&amp;utm_content=original" alt="Rope poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">7<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR ROPE HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Jurassic World: Rebirth.">
+  <title>Jurassic World: Rebirth Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Jurassic World: Rebirth</h1>
+    <p class="film-year">2025</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://www.universalpictures.com.au/tl_files/content/movies/jurassic_world_rebirth/posters/01.jpg" alt="Jurassic World: Rebirth poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">3<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR JURASSIC WORLD: REBIRTH HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Toy Story 5.">
+  <title>Toy Story 5 Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Toy Story 5</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRW_jVquPNlxDW9jpsB8XD-Rx8Nj1N3ZiaI_Jg64Z06Q&amp;s=10" alt="Toy Story 5 poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">5<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR TOY STORY 5 HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Rip.">
+  <title>The Rip Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Rip</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOnxB4l4t1X0zONPG7-suXIiMh_nD1Z2wrVZzzgCSB0A&amp;s=10" alt="The Rip poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">3<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE RIP HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Paris, Texas.">
+  <title>Paris, Texas Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Paris, Texas</h1>
+    <p class="film-year">1984</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXO3Uvh0Q15sK5MOvykPI1H0H0xRuntWkiBS4kG_4r4A&amp;s=10" alt="Paris, Texas poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">5<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR PARIS, TEXAS HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Whiplash.">
+  <title>Whiplash Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Whiplash</h1>
+    <p class="film-year">2014</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmXDWWQ0go1mWx0IDQOoPsnnniuEggJVaGx9lPzgYohQ&amp;s=10" alt="Whiplash poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">9<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR WHIPLASH HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Is This Thing On?.">
+  <title>Is This Thing On? Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Is This Thing On?</h1>
+    <p class="film-year">2025</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_GLlFShFMiTV1OX2nPyw-Ug3Cwrec5MQPIEWOZLmMiQ&amp;s=10" alt="Is This Thing On? poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">6<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR IS THIS THING ON? HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Singin&#x27; in the Rain.">
+  <title>Singin&#x27; in the Rain Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Singin&#x27; in the Rain</h1>
+    <p class="film-year">1952</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG6Z22iCppX60pd10bdU0vqSp-Iv3_utlhjYrPlogGGw&amp;s=10" alt="Singin&#x27; in the Rain poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">10<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR SINGIN&#x27; IN THE RAIN HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Apartment.">
+  <title>The Apartment Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Apartment</h1>
+    <p class="film-year">1960</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvG_oHiDpaOEtmjChzZKHWjBKi9JlBjf1fKbS3apEL2Q&amp;s=10" alt="The Apartment poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">9<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE APARTMENT HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of All the Presidents Men.">
+  <title>All the Presidents Men Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>All the Presidents Men</h1>
+    <p class="film-year">1976</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dtN6eiWTdixmqixpBAy3rKiuVkuOJfs_TM8kbyltnQ&amp;s=10" alt="All the Presidents Men poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">8<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR ALL THE PRESIDENTS MEN HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of True Romance.">
+  <title>True Romance Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>True Romance</h1>
+    <p class="film-year">1993</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Oxj08fG4lGh_hGfGzTUQofhJMIdFylGlnQ-4Iwcb3w&amp;s=10" alt="True Romance poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">9<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR TRUE ROMANCE HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Social Reckoning.">
+  <title>The Social Reckoning Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Social Reckoning</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5DikB1HQ8IO1wtiKidF69xwOvxR6p51XgLnwzmhHtJQ&amp;s=10" alt="The Social Reckoning poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">4<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE SOCIAL RECKONING HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of EraserHead.">
+  <title>EraserHead Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>EraserHead</h1>
+    <p class="film-year">1977</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0khlLy3Iq28WBr5KWaEQil4QWXbPhSHR3Ci57d_LF6A&amp;s=10" alt="EraserHead poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">7<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR ERASERHEAD HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Color of Money.">
+  <title>The Color of Money Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Color of Money</h1>
+    <p class="film-year">1986</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://m.media-amazon.com/images/M/MV5BYTRiNDAxNTgtNzJkMy00Y2RmLThkMmItYzQ5YTU2ZmVhNTg4XkEyXkFqcGc@._V1_QL75_UX190_CR0,0,190,281_.jpg" alt="The Color of Money poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">7<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE COLOR OF MONEY HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Bugonia.">
+  <title>Bugonia Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Bugonia</h1>
+    <p class="film-year">2025</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbEf3ez9Gv2Xipr_qf4KRu4mSUiRkh0creNPEyPhCcKg&amp;s=10" alt="Bugonia poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">8<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR BUGONIA HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Mandalorian &amp; Grogu.">
+  <title>The Mandalorian &amp; Grogu Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Mandalorian &amp; Grogu</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://m.media-amazon.com/images/I/714Jgnz1WxL._AC_UF894,1000_QL80_.jpg" alt="The Mandalorian &amp; Grogu poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">4<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE MANDALORIAN &amp; GROGU HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Its A Wonderful life.">
+  <title>Its A Wonderful life Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Its A Wonderful life</h1>
+    <p class="film-year">1946</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWUUcyhvK758qcEs1YKRqdByOmnN4d-XOSdjUFZiK2fpwh1SerDOnNBlMtIR9__8LCxHRRpX94ejsz_VSzAEpfItqZFJSirNjs5Lq6_js&amp;s=10" alt="Its A Wonderful life poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">10<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR ITS A WONDERFUL LIFE HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Coyote VS ACME.">
+  <title>Coyote VS ACME Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Coyote VS ACME</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz5R4OLA5QejaPegks6LZGFJPzTzHKo8Yo9rTJNKixyQ&amp;s=10" alt="Coyote VS ACME poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">7<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR COYOTE VS ACME HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Wake Up Dead Man: A Knives Out Mystery.">
+  <title>Wake Up Dead Man: A Knives Out Mystery Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Wake Up Dead Man: A Knives Out Mystery</h1>
+    <p class="film-year">2025</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXgxIdhWfazSByEWeNzg3ZMaMK4JzUsm_--KhUgZjk5g&amp;s=10" alt="Wake Up Dead Man: A Knives Out Mystery poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">6<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR WAKE UP DEAD MAN: A KNIVES OUT MYSTERY HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Player.">
+  <title>The Player Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Player</h1>
+    <p class="film-year">1992</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA0IhVUzR58MOKgrnSLYINT80U7TDzqmYtiBuDKUXjdg&amp;s=10" alt="The Player poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">8<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE PLAYER HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of Cool Hand Luke.">
+  <title>Cool Hand Luke Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>Cool Hand Luke</h1>
+    <p class="film-year">1967</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXqaDTVE8uJIhWIcxLx5pqcHKjf0Ne0MDmfVk3qCxGHA&amp;s=10" alt="Cool Hand Luke poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">8<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR COOL HAND LUKE HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Odyssey.">
+  <title>The Odyssey Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Odyssey</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://media.themoviedb.org/t/p/w220_and_h330_face/yy3OlixudhSYJVHypFWCUnPMhd6.jpg" alt="The Odyssey poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">9<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE ODYSSEY HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evan Turok's review of The Drama.">
+  <title>The Drama Review | Evan Turok.com</title>
+  <style>
+    :root { --silver:#c9c9c9; --muted:#707070; --text:#252525; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(180deg,#fff 0%,#fafafa 100%); line-height:1.65; }
+    header { background:rgba(255,255,255,.96); border-bottom:1px solid #ddd; }
+    .nav { max-width:1000px; margin:auto; padding:16px 24px; }
+    .brand { font-size:1.25rem; font-weight:800; text-decoration:none; color:inherit; }
+    .brand span { color:#999; font-weight:400; }
+    main { max-width:1000px; margin:auto; padding:54px 24px 70px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; color:#888; font-size:.78rem; font-weight:800; }
+    h1 { margin:8px 0 8px; font-size:clamp(2.3rem,6vw,4.5rem); line-height:1.04; letter-spacing:-.045em; }
+    .film-year { color:var(--muted); margin:0 0 20px; }
+    .film-intro { display:grid; grid-template-columns:minmax(180px,280px) 1fr; gap:36px; align-items:start; margin:28px 0 34px; }
+    .poster-image,.poster-placeholder { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:18px; border:1px solid #ccc; background:linear-gradient(145deg,#f8f8f8,#d2d2d2); }
+    .poster-placeholder { display:grid; place-items:center; padding:20px; text-align:center; color:#555; font-weight:700; }
+    .score { display:inline-flex; gap:7px; align-items:center; padding:9px 14px; border-radius:999px; border:1px solid #c7c7c7; background:linear-gradient(135deg,#f2f2f2,#fff); font-weight:800; }
+    .score small { color:#888; font-weight:600; }
+    .review-section { margin-top:28px; }
+    .review-section h2 { margin:0 0 12px; font-size:1.7rem; }
+    .review-placeholder { min-height:300px; padding:24px; border-radius:16px; background:#080808; color:#fff; border:2px dashed #777; white-space:pre-wrap; }
+    .placeholder-label { color:#fff; font-weight:800; letter-spacing:.04em; }
+    .placeholder-instructions { color:#ddd; margin-top:12px; }
+    .back-link { display:inline-block; margin-top:34px; padding:12px 20px; border-radius:999px; background:#222; color:#fff; text-decoration:none; font-weight:800; }
+    .back-link:hover { background:#555; }
+    footer { padding:22px 24px; text-align:center; color:#777; border-top:1px solid #ddd; background:#f7f7f7; }
+    @media(max-width:650px) { main { padding:36px 18px 55px; } .film-intro { grid-template-columns:1fr; gap:22px; } .poster-image,.poster-placeholder { max-width:260px; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav"><a class="brand" href="../index.html">Evan Turok<span>.com</span></a></div></header>
+  <main>
+    <div class="eyebrow">Film review</div>
+    <h1>The Drama</h1>
+    <p class="film-year">2026</p>
+    <section class="film-intro" aria-label="Film details">
+      <img class="poster-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI9mEYuKcq3QDW1czqkOKfhT2lMZVE3I50nC7e3y5i5g&amp;s=10" alt="The Drama poster">
+      <div>
+        <div class="eyebrow">Evan's rating</div>
+        <p class="score">8<small>/ 10</small></p>
+      </div>
+    </section>
+    <section class="review-section">
+      <h2>My review</h2>
+      <!-- TO ADD YOUR REVIEW: replace the labelled text inside this black box with your own review. Keep the surrounding HTML tags. -->
+      <div class="review-placeholder">
+        <div class="placeholder-label">[ADD YOUR WRITTEN REVIEW FOR THE DRAMA HERE]</div>
+        <p class="placeholder-instructions">Delete this instruction and type or paste your review here. You can use separate paragraphs by adding another &lt;p&gt;...&lt;/p&gt; block.</p>
+      </div>
+    </section>
+    <a class="back-link" href="../index.html#filmGrid">← Back to all films</a>
+  </main>
+  <footer>© 2026 Evan Turok.com · Film recommendations and reviews from the radio show.</footer>
+</body>
+</html>
